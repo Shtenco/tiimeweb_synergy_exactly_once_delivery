@@ -1,0 +1,118 @@
+{
+  "study": "local sqlite idempotent effects under concurrent duplicate deliveries",
+  "python": "3.13.5",
+  "note": "exactly-once effect only inside one SQLite transaction; not transport exactly-once and not external APIs",
+  "rows": [
+    {
+      "mode": "naive",
+      "seed": 17,
+      "unique_events": 200,
+      "deliveries": 800,
+      "workers": 8,
+      "effects": 800,
+      "distinct_effects": 200,
+      "dedupe_rows": 0,
+      "duplicate_effects": 600,
+      "elapsed_s": 0.6447,
+      "delivery_throughput_s": 1240.9,
+      "p50_handler_ms": 0.6722,
+      "p95_handler_ms": 2.0706
+    },
+    {
+      "mode": "idempotent",
+      "seed": 17,
+      "unique_events": 200,
+      "deliveries": 800,
+      "workers": 8,
+      "effects": 200,
+      "distinct_effects": 200,
+      "dedupe_rows": 200,
+      "duplicate_effects": 0,
+      "elapsed_s": 0.3022,
+      "delivery_throughput_s": 2647.7,
+      "p50_handler_ms": 0.2178,
+      "p95_handler_ms": 8.5404
+    },
+    {
+      "mode": "naive",
+      "seed": 42,
+      "unique_events": 200,
+      "deliveries": 800,
+      "workers": 8,
+      "effects": 800,
+      "distinct_effects": 200,
+      "dedupe_rows": 0,
+      "duplicate_effects": 600,
+      "elapsed_s": 0.9388,
+      "delivery_throughput_s": 852.1,
+      "p50_handler_ms": 0.6182,
+      "p95_handler_ms": 1.7845
+    },
+    {
+      "mode": "idempotent",
+      "seed": 42,
+      "unique_events": 200,
+      "deliveries": 800,
+      "workers": 8,
+      "effects": 200,
+      "distinct_effects": 200,
+      "dedupe_rows": 200,
+      "duplicate_effects": 0,
+      "elapsed_s": 0.2376,
+      "delivery_throughput_s": 3367.5,
+      "p50_handler_ms": 0.2406,
+      "p95_handler_ms": 3.5469
+    },
+    {
+      "mode": "naive",
+      "seed": 91,
+      "unique_events": 200,
+      "deliveries": 800,
+      "workers": 8,
+      "effects": 800,
+      "distinct_effects": 200,
+      "dedupe_rows": 0,
+      "duplicate_effects": 600,
+      "elapsed_s": 0.5817,
+      "delivery_throughput_s": 1375.2,
+      "p50_handler_ms": 0.5801,
+      "p95_handler_ms": 8.9282
+    },
+    {
+      "mode": "idempotent",
+      "seed": 91,
+      "unique_events": 200,
+      "deliveries": 800,
+      "workers": 8,
+      "effects": 200,
+      "distinct_effects": 200,
+      "dedupe_rows": 200,
+      "duplicate_effects": 0,
+      "elapsed_s": 0.2538,
+      "delivery_throughput_s": 3152.1,
+      "p50_handler_ms": 0.2712,
+      "p95_handler_ms": 8.7366
+    }
+  ],
+  "crash_probes": {
+    "before": {
+      "exit_code": 71,
+      "effects_after_crash": 0,
+      "effects_after_redelivery_twice": 1,
+      "integrity_check": "ok",
+      "expected_crash_effects": 0
+    },
+    "after": {
+      "exit_code": 72,
+      "effects_after_crash": 1,
+      "effects_after_redelivery_twice": 1,
+      "integrity_check": "ok",
+      "expected_crash_effects": 1
+    }
+  },
+  "payload_conflict": {
+    "rejected": true,
+    "effects": 1
+  },
+  "all_assertions_passed": true
+}
