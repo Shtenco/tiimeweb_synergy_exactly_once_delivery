@@ -1,0 +1,7 @@
+mode,seed,unique_events,deliveries,workers,effects,distinct_effects,dedupe_rows,duplicate_effects,elapsed_s,delivery_throughput_s,p50_handler_ms,p95_handler_ms
+naive,17,200,800,8,800,200,0,600,0.6447,1240.9,0.6722,2.0706
+idempotent,17,200,800,8,200,200,200,0,0.3022,2647.7,0.2178,8.5404
+naive,42,200,800,8,800,200,0,600,0.9388,852.1,0.6182,1.7845
+idempotent,42,200,800,8,200,200,200,0,0.2376,3367.5,0.2406,3.5469
+naive,91,200,800,8,800,200,0,600,0.5817,1375.2,0.5801,8.9282
+idempotent,91,200,800,8,200,200,200,0,0.2538,3152.1,0.2712,8.7366
